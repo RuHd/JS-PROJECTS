@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@1&family=Exo:wght@100&family=Kanit:wght@100&family=Play&family=Playfair+Display+SC&family=Raleway:wght@100&family=Roboto+Condensed:wght@300&family=Rubik:wght@300&family=Source+Sans+Pro:wght@200;300&display=swap');
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+    border: none;
+}
+
+body {
+    width: 1900px;
+    height: 100%;
+    background-color: #3A3973;
+    overflow: hidden;
+}
+
+header {
+    margin: 0 auto;
+    text-align: center;
+    width : 100%;
+    height: 50px;
+    margin-bottom: 100px;
+}
+
+#menu {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    color: white;
+    right: 100px ;
+    font-size: 2em;
+    width: 250px;
+    
+}
+
+#menu a {
+    text-decoration: none;
+    color: white;
+}
+
+header img {
+    margin: 0 auto;
+    height: 200px;
+}
+.map {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0 auto;
+    width : 1920px;
+}
+
+.location {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    font-size: 1.5em;
+    color: white;
+    letter-spacing: .7px;
+ 
+   
+   
+}
+
+.flag {
+    width: 45px;
+    height: 40px;
+}
+
+.dot {
+    border-radius: 50%;
+    background-color: rgb(105, 105, 105);
+    width: 25px;
+    height: 25px;
+    border: 2px solid red;
+}
+
+.location--dot {
+    position: absolute;
+    right: 1500px;
+    bottom: 320px;
+    border-radius: 50%;
+    background-color: red; 
+    width: 20px;
+    height: 20px;
+    opacity: 0;
+    z-index: 2;
+    
+}
+
+:root {
+    --thaiX: 1080px;
+    --thaiY: 300px;
+
+    --brazilX: 420px;
+    --brazilY: 150px;
+
+    --euaX: 550px;
+    --euaY: 320px;
+
+    --japanX: 980px;
+    --japanY: 320px;
+
+    --indiaX: 1200px;
+    --indiaY: 240px;
+
+    --russiaX: 1300px;
+    --russiaY: 400px;
+
+    --spainX: 1500px;
+    --spainY: 320px;
+
+}
+
+.Thai {
+    bottom:var(--thaiY);
+    right: var(--thaiX);
+}
+.Brazil {
+    right: var(--brazilX);
+    bottom: var(--brazilY);
+}
+
+.EUA {
+    right: var(--euaX);
+    bottom: var(--euaY);
+}
+
+.Japan {
+    right: var(--japanX);
+    bottom: var(--japanY);
+}
+
+.India {
+    right: var(--indiaX);
+    bottom: var(--indiaY);
+}
+
+.Russia {
+    right: var(--russiaX);
+    bottom: var(--russiaY);
+}
+
+.Spain {
+    right: var(--spainX);
+    bottom: var(--spainY);
+}
+
+.map>img {
+    width: 1300px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+
+
+#selection--panel {
+    position: absolute;
+    top: 700px;
+    left: 700px;
+    margin: 0 auto;
+    width: 500px;
+
+}
+
+#selection--panel img:hover {
+    cursor: pointer;
+}
+
+#selection--panel ul {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.fighter--portrait {
+    position: absolute;
+    bottom: 640px;
+    width: fit-content;
+}
+
+.fighter--portrait ul {
+    position: relative;
+}
+
+.fighter--portrait li {
+    position: absolute;
+    opacity: 0;
+}
+
+.fighter--portrait img {
+    width: 300px;
+    height: 380px;
+    margin-left: 40px;
+
+}
+
+.fighter--portrait span {
+    color: white;
+    text-align: center;
+    font-size: 2.5em;
+    margin-left: 125px;
+    
+}
+
+.shownFighter {
+    opacity: 1;
+}
+
+.selectedFighter {
+    border: 4px solid red;
+}

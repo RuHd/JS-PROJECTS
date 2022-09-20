@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="sqgame.css">
+    <title>Sequencial Game</title>
+</head>
+<body>
+    <audio type="audio/mp3" autoplay></audio>
+    <header>
+        <button onclick="setDifficult()" id="darkmodeBtn">Select the difficult</button>
+        <div  class="difficult-mode" >
+            <span onclick="difficultChosen(this.innerText)">Easy</span>
+            <span onclick="difficultChosen(this.innerText)">Medium</span>
+            <span onclick="difficultChosen(this.innerText)">Hard</span>
+        </div>
+    </header>
+    <span style="color:red;opacity:0;" id="goBtn">GO!!!</span>
+    <h1>The Sequencial Game</h1>
+    <div id="container">
+        <span class="square "></span>
+        <span class="square"></span>
+        <span class="square"></span>
+        <span class="square"></span>
+        <span class="square"></span>
+        <span class="square"></span>
+    </div>
+    <button id="btn">Start the sequence</button>
+
+</body>
+<script>
+
+    const body = document.querySelector("body")
+    const header = document.querySelector("header")
+    const squares = document.querySelectorAll(".square")
+    const sqrArr = []
+    const btn = document.getElementById("btn")
+    const goBtn = document.getElementById('goBtn')
+    const darkmodeBtn = document.getElementById('darkmodeBtn')
+    const difficultMode = document.querySelector(".difficult-mode")
+    const difficults = difficultMode.querySelectorAll("span")
+    let sequence = 0
+    let option = ""
+
+    // let audio = document.createElement("audio")
+    // audio.src = './button.mp3'
+    // audio.autoplay
+
+    // body.appendChild(audio)
+    // difficults[1].style.opacity = 0
+    // difficults[1].style.display = "none";
+
+
+
+    for (let i = 0; i<squares.length; i++){
+        sqrArr.push(i)
+    }
+    // Function to show the difficult options
+    function setDifficult() {
+        difficultMode.classList.toggle("show-difficults")
+    }
+
+    // Function to select a difficult option
+
+    function difficultChosen(mode){
+        if (mode == "Easy") {
+            difficults[1].style.display = "none"
+            difficults[2].style.display = "none"
+
+        } else if(mode == "Medium") {
+            difficults[0].style.display = "none"
+            difficults[2].style.display = "none"
+        } else if(mode == "Hard") {
+            difficults[0].style.display = "none"
+            difficults[1].style.display = "none"
+        }
+        option = mode
+    }
+
+    // See if the player's choose is correct accordingly with
+    // the previous sequence
+    function match(index) {
+        if (index == sqrArr[0]) {
+            sqrArr.shift()
+            if (sqrArr[0]==undefined) {
+                alert("Congratulations!! The sequence is right!")
+                return document.location.reload(true)
+            }
+        } else {
+            alert("Wrong! Start the Sequence Again")
+            return document.location.reload(true)
+        }
+
+    }
+
+    // Set the click Event for the squares
+    function clickeableSqr() {
+        goBtn.style.opacity=1
+        for (let i = 0; i<squares.length; i++) {
+            squares[i].addEventListener("click",function(){
+                    
+                    squares[i].classList.toggle("coloured")
+                    setTimeout(function(){
+                            squares[i].classList.toggle("coloured")
+                            match(i)
+                    },200)
+            })
+       }
+    }
+
+    // Shuffle the squares indexes randomly
+   function shuffle() {
+        for (let i = sqrArr.length -1; i > 0; i--) {
+            let j = Math.floor(Math.random() * i)
+            let k = sqrArr[i]
+            sqrArr[i] = sqrArr[j]
+            sqrArr[j] = k
+        }
+        let randomNum = Math.floor(Math.random()*sqrArr.length-1) 
+        sqrArr.splice(Math.floor(Math.random()*sqrArr.length-1),0,sqrArr[randomNum])
+        sqrArr.pop()
+ 
+        if (option[0] !== undefined ) {
+            if (option == "Easy") {
+                sqrArr.pop()
+                sqrArr.pop()
+                sqrArr.pop()
+                sqrArr.pop()
+                console.log(sqrArr)
+            } else if(option == "Normal"){
+                sqrArr.pop()
+                sqrArr.pop()
+                console.log(sqrArr)
+            }
+        } else {
+            console.log(sqrArr)
+        }
+   }
+
+   function initiateSequence() {   
+       btn.removeEventListener('click',function(){
+           alert('deleted')
+            initiateSequence()
+       })
+       shuffle()
+       let interval = 1500  
+       for (let i = 0; i<sqrArr.length;i++) {
+            setTimeout(function(){
+                squares[sqrArr[i]].classList.toggle("coloured")
+                setTimeout(function(){
+                    squares[sqrArr[i]].classList.toggle("coloured")
+                },1000)
+            },interval)
+            interval += 1500
+
+   
+       }
+
+       setTimeout(() => clickeableSqr(),interval+500)
+
+   }
+
+   btn.addEventListener("click",function(){
+    initiateSequence() 
+   })
+
+   
+   
+
+</script>
+</html>

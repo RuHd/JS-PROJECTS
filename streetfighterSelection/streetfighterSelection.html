@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="streetfighterSelection.css">
+    <title>Fighter selection screen</title>
+</head>
+<body>
+    <audio src="./audio.mp3" ></audio>
+    <div id="menu">
+        <a href="">Home</a>
+        <a href="">Projetos</a>
+    </div>
+    <header>
+        <img src="./SF30thACTitleandDeveloperLogos/LogoStreetFighter_small.png" alt="">
+    </header>
+    <div class = "map">
+        <img src="./map.png" alt="">
+        <div class="location" style="bottom: calc(var(--japanY) + 25px); right: calc(var(--japanX));">
+            <img src="./flags/japan.png" alt="" class="flag">
+            <span>Japan</span>
+            <span></span>
+        </div>
+        <div class="location" style="bottom: calc(var(--euaY) + 25px); right: calc(var(--euaX));">
+            <img src="./flags/EUA.png" alt="" class="flag">
+            <span>USA</span>
+                 
+        </div>
+        <div class="location" style="bottom: calc(var(--thaiY) + 25px); right: calc(var(--thaiX));">
+            <img src="./flags/thailand.png" alt="" class="flag">
+            <span>Thailand</span>
+            
+        </div>
+        <div class="location" style="bottom: calc(var(--spainY) + 25px); right: calc(var(--spainX));">
+            <img src="./flags/spain.png" alt="" class="flag">
+         <span>Spain</span>  
+          
+        </div>
+        <div class="location" style="bottom: calc(var(--russiaY) + 25px); right: calc(var(--russiaX));">
+            <img src="./flags/russia.png" alt="" class="flag">
+            <span>Russia</span>
+            
+        </div>
+        <div class="location" style="bottom: calc(var(--brazilY) + 25px); right: calc(var(--brazilX));">
+            <img src="./flags/brazil.png" alt="" class="flag">
+            <span>Brazil</span>
+            
+        </div>
+        <div class="location" style="bottom: calc(var(--indiaY) + 25px); right: calc(var(--indiaX));">
+            <img src="./flags/india.png" alt="" class="flag">
+            
+            <span>India</span>
+            
+            
+        </div>
+        
+        <div class="location--dot">
+            <span></span> 
+        </div>
+    </div>
+    <div id="selection--panel">
+        <ul>
+            <li>
+                <img src="./SF30thACCharacterBiosTumbnails/Thumb_ryu_sfa.png" alt="">
+            </li>
+            <li>
+                <img src="./SF30thACCharacterBiosTumbnails/Thumb_ken_sfa.png" alt="">
+            </li>
+            <li>
+                <img src="./SF30thACCharacterBiosTumbnails/Thumb_sagat_sfa.png" alt="">
+            </li>
+            <li>
+                <img src="./SF30thACCharacterBiosTumbnails/Thumb_vega_sfa.png" alt="">
+            </li>
+            <li>
+                <img src="./SF30thACCharacterBiosTumbnails/Thumb_zangief_sfa.png" alt="">
+            </li>
+            <li>
+                <img src="./SF30thACCharacterBiosTumbnails/Thumb_mbison_sfa.png" alt="">
+            </li>
+            <li>
+                <img src="./SF30thACCharacterBiosTumbnails/Thumb_blanka_sfa.png" alt="">
+            </li>
+            <li>
+                <img src="./SF30thACCharacterBiosTumbnails/Thumb_guile_ssf2.png" alt="">
+            </li>
+            <li>
+                <img src="./SF30thACCharacterBiosTumbnails/Thumb_ehonda_sfa.png" alt="">
+            </li>
+            <li>
+                <img src="./SF30thACCharacterBiosTumbnails/Thumb_dhalsim_sfa.png" alt="">
+            </li>
+        </ul>
+    </div>
+    <div class="fighter--portrait">
+            <ul>
+                <li>
+                    <img src="./GIFS/ryu.gif" alt=""  class="fighter">  
+                    <span>RYU</span>
+                </li>
+                <li>
+                    <img src="./GIFS/ken.gif" alt="" class="fighter">
+                    <span>KEN</span>
+                </li>
+                <li>
+                    <img src="./GIFS/sagat.gif" alt="" class="fighter">
+                    <span>SAGAT</span>
+                </li>
+                <li>
+                    <img src="./GIFS/vega.gif" alt="" class="fighter">
+                    <span>VEGA</span>
+                </li>
+                <li>
+                    <img src="./GIFS/zangief.gif" alt="" class="fighter">
+                    <span>ZANGIEF</span>
+                </li>
+                <li>
+                    <img src="./GIFS/mBison.gif" alt="" class="fighter">
+                    <span>M. BISON</span>
+                </li>
+                <li>
+                    <img src="./GIFS/blanka.gif" alt="" class="fighter">
+                    <span>BLANKA</span>
+                </li>
+                <li>
+                    <img src="./GIFS/guile.gif" alt="" class="fighter">
+                    <span>GUILE</span>
+                </li>
+                <li>
+                    <img src="./GIFS/eHonda.gif" alt="" class="fighter">
+                    <span>E. HONDA</span>
+                </li>
+                <li>
+                    <img src="./GIFS/dhalsim.gif" alt="" class="fighter">
+                    <span> DHALSIM</span>
+                </li>
+            </ul>               
+    </div>
+    <footer>
+        <a href=""></a>
+    </footer>
+</body>
+<script>
+    const fightersPortrait = document.querySelector(".fighter--portrait")
+    const fighter = fightersPortrait.getElementsByTagName("li")
+    const selectionPanel = document.getElementById("selection--panel")
+    const fightersIcon = selectionPanel.getElementsByTagName("img")
+    const locationDot = document.querySelector(".location--dot")
+    const locations = ["Japan","EUA",'Thai',"Spain","Russia","Thai","Brazil","EUA","Japan","India"]
+    const audio = document.querySelector("audio")
+
+    audio.play()
+    audio.loop = true
+    
+
+    for (let i = 0; i< fightersIcon.length; i++) {
+        fightersIcon[i].addEventListener("mouseover",() => {
+            fightersIcon[i].classList.add("selectedFighter")
+            locationDot.classList.add(`${locations[i]}`)
+            fighter[i].classList.toggle("shownFighter")
+            fighter[i].style.opacity = 1
+            locationDot.style.opacity = 1
+        })
+        fightersIcon[i].addEventListener("mouseleave",() => {
+            fightersIcon[i].classList.remove("selectedFighter")
+            locationDot.classList.remove(`${locations[i]}`)
+            fighter[i].style.opacity = 0
+            locationDot.style.opacity = 0
+        })
+    }
+    
+</script>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="carouselImg.css">
+    <script src="https://kit.fontawesome.com/ebc21972aa.js" crossorigin="anonymous"></script>
+    <title>Carousel Image</title>
+</head>
+<body>
+        <div id="img-gallery"> 
+            <section class="imgMovement">
+                <div class="imgContainer">
+                    <img src="woodentable.jpg">
+                    <span>Olha essa imagem que top!!!!! \o/</span>
+                </div>
+                <div class="imgContainer">
+                    <img src="paintedimg.jpg">
+                    <span>Olha essa imagem que top!!!!! \o/</span>
+                </div>
+                <div class="imgContainer">
+                    <img src="imgfloor.jpg">
+                    <span>Olha essa imagem que top!!!!! \o/</span>
+                </div>
+                <div class="imgContainer">
+                    <img src="velhaIMG.JPG">
+                    <span>Olha essa imagem que top!!!!! \o/</span>
+                </div>
+                <div class="imgContainer">
+                    <img src="tempW3.JPG">
+                    <span>Olha essa imagem que top!!!!! \o/</span>
+                </div>
+                <div class="imgContainer">
+                    <img src="CSS-LOGO.png">
+                    <span>Olha essa imagem que top!!!!! \o/</span>
+                </div>
+            </section>
+        </div>
+        <section>
+            <i class="fa-solid fa-arrow-left arrows"></i>
+            <i class="fa-solid fa-arrow-right arrows"></i>
+        </section> 
+    <script>
+        const leftArrow = document.querySelector(".fa-arrow-left")
+        const rightArrow = document.querySelector(".fa-arrow-right")
+        const imagesGallery = document.getElementById("img-gallery")
+        const imgs = document.querySelectorAll("img")
+        const imgMovement = document.querySelector(".imgMovement")
+        let movement = 0
+        leftArrow.addEventListener("click",function(){
+            if (movement == 0) {
+                return
+            } else {
+                movement += 319
+                imgMovement.style.transform = `translateX(${movement}px)`
+                console.log(movement) 
+            }
+                
+        })
+
+        rightArrow.addEventListener("click",function(){
+            if (movement == -957) {
+                return
+            }
+            movement -= 319
+             imgMovement.style.transform= `translateX(${movement}px)`
+             console.log(movement)
+            
+        })
+    </script>
+</body>
+</html>

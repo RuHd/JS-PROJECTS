@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="nameGenerator.css">
+    <title>Kitten name generator</title>
+</head>
+<body> 
+    <div id="darkMode--container">
+        <button class="darkMode--btn">Dark Mode</button>
+    </div>
+    <div id="kittenDialogue--container">
+        <span class="kittenDialogue">I'm afraid of the darkness!!!</span>
+    </div>
+    
+    <div id="container">
+        <img  class = "kitten--Img"src="poker_face_kitten.jpg" alt="poker face kitten">
+        <h1>Kitten Name Generator</h1>
+        <input type="text" readonly placeholder="Kitten name" value="">
+        <button class="generator--btn"> Generate a name! :3</button>
+        <p id="description">This name generator has, as purpose, to generate a random name (focus on the RANDOM word!) for your kitten. Please don't call it just cat! It has feelings! :3</p>
+    </div>
+</body>
+<script>
+    const consonants = 'bcdfghjklmnprstvwxyz'
+    const vogals = 'aeiou'
+    const suffix = ['ski','ov','ev','lski','kata','hara','suke','kara','gawa','oso','us','eus','oso','ano','ana','vio','via','zinho','shi','ao','ola','iano','nho']
+    const body = document.querySelector("body")
+    const darkBtn = document.querySelector(".darkMode--btn")
+    const nameInput = document.querySelector("input")
+    const btn = document.querySelector(".generator--btn")
+    const kittenImg = document.querySelector(".kitten--Img")
+    const kittenDialogue = document.getElementById("kittenDialogue--container")
+
+    
+
+    // Changing page to dark/light mode
+
+    darkBtn.addEventListener("click", () => {
+        body.classList.toggle("darkMode")
+        darkBtn.classList.toggle("lightMode")
+        if (darkBtn.innerText === "Dark Mode") {
+            darkBtn.innerText = "Light Mode"
+            kittenImg.src = "crying_cat.jpg"
+            kittenDialogue.style.opacity = 1
+
+        }
+        else {
+            darkBtn.innerText = "Dark Mode"
+            kittenImg.src = "poker_face_kitten.jpg"
+            kittenDialogue.style.opacity = 0
+        }
+    })
+
+
+
+    // name patterns
+
+    // 1 = C + V + C + V + S
+    // 2 = C + V + C + V (same vogals and same consonants)
+    // 3 = V + C + V
+
+    const randomName = str => {
+        return str[Math.ceil(Math.random() * str.length - 1)]
+    }
+
+    const randomPattern = () => {
+        let patternsId = Math.ceil(Math.random() * 3)
+
+
+        switch(patternsId){
+            case 1:
+                return randomName(consonants) + randomName(vogals) + randomName(consonants) + randomName(vogals) + randomName(suffix)
+                break
+            case 2:
+                let c = randomName(consonants)
+                let v = randomName(vogals)
+
+                return c + v + c + v
+                break
+            case 3:
+                let v2 = randomName(vogals)
+
+                return v2 + randomName(consonants) + v2 + randomName(suffix)
+                break
+            default:
+                return randomName(consonants) + randomName(vogals) + randomName(suffix)
+                break
+        }
+    }
+
+    
+    
+    
+
+    btn.addEventListener("click", () => {
+        let name = randomPattern()
+        let arr = name.split('')
+        arr.splice(0,1,arr[0].toUpperCase())
+        name = arr.join('')
+        nameInput.value = name
+    })
+</script>
+</html>

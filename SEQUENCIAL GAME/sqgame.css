@@ -1,0 +1,110 @@
+* {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        border: 0;
+        text-decoration: 0;
+}
+
+audio {
+    position: absolute;
+    opacity: 0;
+    display: none;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    gap: 20px;
+    height: 100vh;
+    transition: background-color .5s;
+} 
+
+:root {
+    --fitContent: 
+}
+
+header {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 250px;
+    height: 130px;
+    align-content: center;
+}
+
+#darkmodeBtn {
+    background-color: transparent;
+    border: 1px solid black;
+    padding: 10px 5px;
+    transition: .3s;
+}
+
+.darkMode-elements {
+    color: white;
+    border: 1px solid white;
+}
+
+#darkmodeBtn:hover {
+    cursor: pointer;
+}
+
+.difficult-mode {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid black;
+    text-align: center;
+    display: none;
+    gap: 10px;
+    /* opacity: 0; */
+    justify-content: space-evenly;
+    transition: .5s;
+    /* height: 100px; */
+}
+
+.show-difficults {
+    display: flex;
+    opacity: 1;
+}
+
+.difficult-mode span{
+    width: 100%;
+
+    
+}
+
+.difficult-mode span:hover {
+    cursor: pointer;
+}
+
+#container {
+ 
+    display: grid;
+    grid-template-columns: repeat(3,auto);
+    grid-template-rows: repeat(2,auto);
+    gap: 25px;
+    width: 600px;
+    height: 400px;
+}
+
+.square {
+    display: inline-block;
+    background-color: gray;
+}
+
+.square:hover {
+    cursor: pointer;
+}
+
+.coloured {
+    background-color: red;
+}
+
+#btn:hover {
+    cursor: pointer;
+}

@@ -1,0 +1,41 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: none;
+    list-style-type: none;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
+#container {
+    position:relative;
+    border: 2px solid green;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 550px;
+    width: 600px;
+}
+
+.lane {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    overflow-x: hidden;
+}
+
+.water-lane {
+    height: 180px;
+    background-color: rgb(9, 199, 199); 
+}
+
+.land-lane {
+    background-color: green;
+}

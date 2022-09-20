@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Forca</title>
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        border: none;
+        color: black;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+    #container{
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        border: 2px solid red;
+        width: 100%;
+        gap: 30px;
+    }
+    #input-sections {
+        display: flex;
+        gap: 20px;
+    }
+
+    #input-sections input {
+        height: 30px;
+        padding: 10px;
+        border: 1px solid black;
+    }
+
+    #input-sections section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 20px;
+    }
+
+    #pole {
+        height: 300px;
+        width: 300px;
+        border: 1px solid red;
+    }
+
+    .empty-spaces {
+        width: 300px;
+        border: 1px solid red;
+    }
+
+    button {
+        padding: 10px;
+        width: fit-content;
+    }
+
+    #stickman {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #stickman  * {
+        opacity: 0;
+    }
+
+    .head {
+        border: 1px solid black;
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+
+    }
+
+    .torso {
+        position: absolute;
+        height: 100px;
+        width: 2px;
+        left: 50%;
+        top: 100%;
+        border: 1px solid black;
+    }
+
+    .left-arm {
+        position: absolute;
+        height: 50px;
+        width: 2px;
+        left: 44%;
+        top: 100%;
+        border: 1px solid black; 
+        transform: rotateZ(45deg);
+         
+    }
+
+    .right-arm {
+        position: absolute;
+        height: 50px;
+        width: 2px;
+        left: 56%;
+        top: 98%;
+        border: 1px solid black; 
+        transform: rotateZ(-45deg);
+         
+    }
+
+    .left-leg {
+        position: absolute;
+        height: 50px;
+        width: 2px;
+        left: 44%;
+        top: 280%;
+        border: 1px solid black; 
+        transform: rotateZ(45deg);
+    }
+
+    .right-leg {
+        position: absolute;
+        height: 50px;
+        width: 2px;
+        left: 56%;
+        top: 280%;
+        border: 1px solid black; 
+        transform: rotateZ(-45deg);
+    }
+
+</style>
+<body>
+    <div id="container">
+        <h1>Jogo da forca</h1>
+        <div id="pole">
+            <span></span>
+            <span></span>
+            <span></span>
+            <div id="stickman">
+                <span class="head"></span>
+                <span class="torso"></span>
+                <span class="left-arm"></span>
+                <span class="right-arm"></span>
+                <span class="left-leg"></span>
+                <span class="right-leg"></span>
+            </div>
+        </div>
+        <div class="empty-spaces"></div>
+        <p class="nWords">Nº WORDS: </p>
+        <div id="input-sections">
+            <section class="letter-insert">
+                <input type="text" placeholder="insert a letter here" value="" class="letterInput">
+                <button>GO!</button>
+            </section>
+            <section class="word-insert">
+                <input type="text" placeholder="insert a word here" value="" class="wordInput">
+                <button>GO!</button>
+            </section>
+        </div>
+    </div>
+</body>
+<script>
+    let chosenWord = ""
+    const setWords = ["cachorro","gato","lebre"]
+    const space = "__"
+    const emptySpaces = document.querySelector(".empty-spaces")
+    const inputLetter = document.querySelector(".letterInput")
+    const inputWord = document.querySelector(".wordInput")
+    const btns = document.getElementsByTagName("button")
+    const nWords = document.querySelector(".nWords")
+    const [armLeft, armRight, head, torso, leftLeg, rightLeg] = 
+    [document.querySelector(".left-arm"),document.querySelector(".right-arm"),document.querySelector(".head"),document.querySelector(".torso"),document.querySelector(".left-leg"),document.querySelector(".right-leg")]
+    const stickMan = [head, torso, armLeft, armRight,leftLeg, rightLeg]
+
+    let missTimes = 0
+    let groupLetters = []
+
+    
+    chosenWord = setWords[Math.ceil(Math.random() * setWords.length - 1)]
+    nWords.innerText += " " +  chosenWord.length
+
+
+    for (let i = 0; i<chosenWord.length; i++) {
+        emptySpaces.innerText += " " + space
+        groupLetters.push(space)
+    }
+
+    const checkWin = () => {
+        if (emptySpaces.innerText == chosenWord) {
+            setTimeout(()=> {
+                alert("You have discovered the secret word!"),500
+                stickMan.forEach(value => value.style.opacity = 0)
+                groupLetters.forEach((value,index,arr) => {
+                    arr.splice(index,1,"__")
+                    emptySpaces.innerText = groupLetters.join(" ")
+                })
+            })
+        }
+    }
+
+    btns[0].addEventListener("click",()=> {
+        if( missTimes == chosenWord.length) alert("You have failed!")
+        stickMan[missTimes].style.opacity = 1
+        missTimes++
+        let letter = inputLetter.value
+
+        
+        if (letter.length == 1) {
+            for (let i = 0; i<chosenWord.length; i++) {
+                if (chosenWord[i] == letter) {
+                    groupLetters.splice(i,1,letter)
+                    emptySpaces.innerText = groupLetters.join("")
+                }
+            }
+        } else alert("Insert just one letter in this field")
+
+        checkWin()
+        
+    })
+
+   
+    
+</script>
+</html>

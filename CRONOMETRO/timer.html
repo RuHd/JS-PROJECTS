@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="timer.css">
+    <title>Cronometro</title>
+</head>
+<body>
+    <div id="container">
+        <h1>Cronometro</h1>
+        <div id= "timer">
+            <span id="minutos">00</span>
+            <span>:</span>
+            <span id="segundos">00</span>
+            <span>:</span>
+            <span id="milisec">00</span>
+        </div>
+        <div id = "btn-selections">
+            <button id="iniciar">Iniciar</button>
+            <button id="parar">Parar</button>
+            <button id="reset">Reset</button>
+        </div>
+        
+    </div>
+</body>
+<script>
+    // botões
+    const iniciar = document.getElementById('iniciar')
+    const parar = document.getElementById('parar')
+    const reset = document.getElementById('reset')
+
+    // tempo - tags
+
+    const minutos = document.getElementById('minutos')
+    const segundos = document.getElementById('segundos')
+    const milisec = document.getElementById('milisec')
+
+    let timerStarted = false 
+    let stopClicked = false
+    let currentMin = 0
+
+    // variaveis de tempo
+
+    let mili = 0
+    let sec = 0
+    let min = 0
+
+    let timeId;  // passar a função TimeFunction como referência
+   
+    mili = mili.toFixed(1)
+
+    function timer() {
+                mili++
+                milisec.innerText =  mili 
+                
+                if (milisec.innerText == 9) {
+                    mili = 0
+                    sec++
+                    if (sec < 10) {
+                        segundos.innerText =  '0' + sec
+                    } else {
+                        segundos.innerText = sec
+                    }
+                }
+                if (sec > 59) {
+                    currentMin++ 
+                    sec = 0
+                    segundos.innerText =  '0' + sec
+                    if (minutos.innerText < 10) {
+                        minutos.innerText = '0' + currentMin
+                    } else {
+                        minutos.innerText = currentMin
+                    }    
+                }
+    }
+    
+       
+        
+        iniciar.addEventListener('click',function(){
+            if (timerStarted == false) {
+                const timeFunction = setInterval(timer,100)
+                timeId = timeFunction  
+                timerStarted = true
+            }    
+        })
+
+        // Para o cronometro
+        parar.addEventListener('click',function(){
+            if(timerStarted) clearInterval(timeId) 
+            timerStarted = false
+
+        })
+        // Zera o cronometro
+        reset.addEventListener('click',function(){
+
+            if (timerStarted) clearInterval(timeId)
+            stopClicked = true
+            timerStarted = false
+            mili = 0
+            sec = 0
+            min = 0
+            milisec.innerText = '0' + mili
+            segundos.innerText = '0' + sec
+            minutos.innerText = '0' + min
+            clearInterval(timeId)
+        })
+</script>
+</html>

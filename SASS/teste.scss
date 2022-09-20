@@ -1,0 +1,16 @@
+$color: red;
+$container-width: 200px;
+$container-height: 100px;
+$flexbox: flex;
+
+body {
+    display: $flexbox;
+    justify-content: center;
+    align-items: center;
+}
+
+#teste {
+    background-color: $color;
+    width:$container-width;
+    height: $container-height;
+}

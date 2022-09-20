@@ -1,0 +1,13 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#teste {
+  background-color: red;
+  width: 200px;
+  height: 100px;
+}
+
+/*# sourceMappingURL=teste.css.map */

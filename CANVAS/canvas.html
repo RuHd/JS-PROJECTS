@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="shape.js"></script>
+    <title>Document</title>
+</head>
+<style>
+
+</style>
+<body>
+</body>
+<script>
+    const body = document.querySelector("body")
+    const canvas = new Canvas(500,500)
+    
+    
+    const ctx = canvas.canvas.getContext("2d")
+    const circle = new Circle(20,250,250)
+    canvas.draw()
+    circle.draw()
+    canvas.clear()
+    //game loop
+    setInterval(function(){
+        if (circle.x + circle.radius >= canvas.canvas.clientWidth) {
+            circle.direction = -1
+            circle.acceleration = 1
+        } 
+        if (circle.x - circle.radius < 0) 
+        {
+            circle.direction = 1
+            circle.acceleration = 1
+        }
+ 
+        if (circle.y + circle.radius == canvas.canvas.clientHeight) 
+        else circle.fall()
+        
+        
+        
+        canvas.clear()
+        circle.draw()
+        
+        
+        
+    },25)
+</script>
+</html>
